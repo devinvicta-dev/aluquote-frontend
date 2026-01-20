@@ -34,8 +34,8 @@ git push origin main
 
 In the App Platform interface:
 
-1. **Build Command**: `npm ci && npm run build`
-   - Or if using pnpm: `pnpm install && pnpm run build`
+1. **Build Command**: `pnpm install && pnpm run build`
+   - This project uses pnpm as the package manager
 
 2. **Output Directory**: `dist`
    - This is where Vite outputs the built files
