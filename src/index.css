@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-industrial-900 text-industrial-100 font-sans antialiased;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-industrial-800;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-industrial-600 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-industrial-500;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-accent-blue text-industrial-900 font-semibold px-6 py-3 rounded-lg
+           hover:bg-accent-cyan transition-all duration-200
+           shadow-neon hover:shadow-neon-strong
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none;
+  }
+  
+  .btn-secondary {
+    @apply bg-industrial-700 text-industrial-100 font-medium px-4 py-2 rounded-lg
+           hover:bg-industrial-600 transition-all duration-200
+           border border-industrial-600;
+  }
+  
+  .card {
+    @apply bg-industrial-800 rounded-xl border border-industrial-700 p-6;
+  }
+  
+  .input-field {
+    @apply bg-industrial-900 border border-industrial-600 rounded-lg px-4 py-2
+           text-industrial-100 placeholder-industrial-500
+           focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue
+           transition-all duration-200;
+  }
+  
+  .label {
+    @apply text-industrial-400 text-sm font-medium mb-1 block;
+  }
+  
+  .stat-value {
+    @apply text-2xl font-bold font-mono text-accent-blue;
+  }
+  
+  .stat-label {
+    @apply text-sm text-industrial-400;
+  }
+  
+  .table-header {
+    @apply text-industrial-400 text-xs uppercase tracking-wider font-semibold;
+  }
+  
+  .table-cell {
+    @apply text-industrial-200 font-mono text-sm;
+  }
+  
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-success {
+    @apply badge bg-accent-emerald/20 text-accent-emerald;
+  }
+  
+  .badge-warning {
+    @apply badge bg-accent-amber/20 text-accent-amber;
+  }
+  
+  .badge-error {
+    @apply badge bg-accent-red/20 text-accent-red;
+  }
+  
+  .badge-info {
+    @apply badge bg-accent-blue/20 text-accent-blue;
+  }
+}
+
+/* Animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(56, 189, 248, 0.6);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
