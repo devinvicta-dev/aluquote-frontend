@@ -9,8 +9,10 @@ export default defineConfig({
     }
   },
   preview: {
-    host: '0.0.0.0',
+    host: true,
     port: 8080,
-    allowedHosts: 'all'
+    allowedHosts: [
+      'ai-quote-frontend-b4mfk.ondigitalocean.app'
+    ]
   }
 })
