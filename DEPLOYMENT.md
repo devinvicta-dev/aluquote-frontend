@@ -28,19 +28,27 @@ git push origin main
 4. Select **GitHub** as your source
 5. Authenticate with GitHub if prompted
 6. Select your repository and branch (usually `main`)
-7. DigitalOcean will auto-detect it's a static site
+7. **IMPORTANT**: Make sure DigitalOcean detects it as a **Static Site** (not a Web Service)
+   - If it shows "Web Service" or "Worker", you need to change it
+   - Click on the component and change the type to **Static Site**
+   - Static sites don't need a run command or health checks
 
 ### Step 3: Configure Build Settings
 
 In the App Platform interface:
 
-1. **Build Command**: `pnpm install && pnpm run build`
+1. **Source Directory**: `/` (or leave empty)
+   - This is the root of your repository where all app files are located
+
+2. **Build Command**: `pnpm install && pnpm run build`
    - This project uses pnpm as the package manager
 
-2. **Output Directory**: `dist`
-   - This is where Vite outputs the built files
+3. **Output Directory**: `dist` (or leave empty - DigitalOcean auto-detects this)
+   - Vite outputs built files to the `dist` directory
+   - DigitalOcean typically auto-detects `dist` for Vite projects
+   - If the field is not visible, it's because it's being auto-detected
 
-3. **Run Command**: Leave empty (static sites don't need a run command)
+4. **Run Command**: Leave empty (static sites don't need a run command)
 
 ### Step 4: Configure Environment Variables
 
@@ -98,6 +106,19 @@ If you prefer using the command line:
 - **Auto-Deploy**: By default, App Platform will auto-deploy on every push to your main branch
 
 ## Troubleshooting
+
+### Error: "determine start command" or "failed health checks"
+**Problem**: Your app is configured as a **Web Service** instead of a **Static Site**.
+
+**Solution**:
+1. Go to your app in DigitalOcean App Platform dashboard
+2. Click on **Settings** → **Components**
+3. Find your component and click **Edit**
+4. Change the **Component Type** from "Web Service" to **"Static Site"**
+5. Make sure **Run Command** is empty (static sites don't need one)
+6. Save and redeploy
+
+**Why this happens**: Static sites don't run a server process, so they don't need a run command or health checks. Web services expect a running server on a specific port.
 
 ### Build Fails
 - Check that `package.json` has the correct build script
